@@ -1,0 +1,24 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.sortMembers": true,
+        "source.fixAll.eslint": true
+    },
+
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+
+    "eslint.validate": ["typescript", "javascript"],
+
+    "[json]": {
+        "editor.formatOnSave": true
+    },
+
+    "[jsonc]": {
+        "editor.formatOnSave": true
+    },
+
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    }
+}

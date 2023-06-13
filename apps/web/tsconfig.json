@@ -1,0 +1,3 @@
+{
+    "extends": "@sponge/config-ts/tsconfig.base.json"
+}

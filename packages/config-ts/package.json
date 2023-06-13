@@ -1,0 +1,8 @@
+{
+    "name": "@sponge/config-ts",
+    "version": "1.0.0",
+    "description": "Common TypeScript config.",
+    "main": "index.js",
+    "author": "Jack Wright",
+    "license": "GPL-3.0"
+}

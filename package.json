@@ -1,0 +1,32 @@
+{
+    "name": "@sponge/root",
+    "version": "1.0.0",
+    "description": "AI Sponge rendered in the browser.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nx run-many -t dev",
+        "lint": "nx run-many -t lint --output-style=stream"
+    },
+    "keywords": [],
+    "author": "Jack Wright",
+    "license": "GPL-3.0",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "dependencies": {
+        "nx": "^16.3.2"
+    },
+    "devDependencies": {
+        "@sponge/config-ts": "*",
+        "@sponge/web": "*",
+        "@types/node": "^20.3.1",
+        "@typescript-eslint/eslint-plugin": "^5.59.11",
+        "@typescript-eslint/parser": "^5.59.11",
+        "eslint": "^8.42.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier": "^2.8.8",
+        "typescript": "^5.1.3"
+    }
+}

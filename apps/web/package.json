@@ -1,0 +1,21 @@
+{
+    "name": "@sponge/web",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "devDependencies": {
+        "@sponge/eslint-config-sponge": "*",
+        "@types/three": "^0.152.1",
+        "vite": "^4.3.9"
+    },
+    "scripts": {
+        "dev": "vite serve ./src",
+        "lint": "eslint **/*.ts"
+    },
+    "author": "Jack Wright",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "@sponge/three-components": "*",
+        "three": "^0.153.0"
+    }
+}
