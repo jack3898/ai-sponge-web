@@ -1,3 +1,3 @@
 import * as THREE from 'three';
 
-export const light = new THREE.PointLight(0xffffff, 1, 100);
+export const light = new THREE.HemisphereLight(0xffffff, 1);

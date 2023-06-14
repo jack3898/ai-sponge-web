@@ -1,13 +1,12 @@
-import { scene, mesh, setup } from '@sponge/three-components';
-import { Color } from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { scene, mesh, setup, camera } from '@sponge/three-components';
+import { Color, Quaternion } from 'three';
 
 async function main() {
-	setup.camera.position.z = 20;
-	setup.camera.position.y = 2;
-	setup.light.position.set(10, 10, 10);
+	setup.camera.position.x = 0;
+	setup.camera.position.y = 3;
+	setup.camera.position.z = -8;
 
-	new OrbitControls(setup.camera, setup.container);
+	setup.light.position.set(10, 10, 10);
 
 	scene.background = new Color('#DEFEFF');
 
@@ -17,20 +16,41 @@ async function main() {
 	const spongebob = await mesh.spongebobGltf();
 	const patrick = await mesh.patrickGltf();
 	const squidward = await mesh.squidwardGltf();
+	const bikinibottom = await mesh.bikinibottomGltf();
 
-	spongebob.scene.scale.multiplyScalar(2);
-	patrick.scene.scale.multiplyScalar(2);
-	squidward.scene.scale.multiplyScalar(2);
+	spongebob.scene.translateZ(-23);
+	spongebob.scene.translateX(-21);
+	spongebob.scene.rotateY(50 * (Math.PI / 180));
 
-	spongebob.scene.translateX(-6);
-	patrick.scene.translateX(6);
-	squidward.scene.translateX(0);
+	patrick.scene.translateZ(7);
+	patrick.scene.translateX(-18);
+	patrick.scene.rotateY(130 * (Math.PI / 180));
+
+	squidward.scene.translateX(-20);
+	squidward.scene.translateZ(-7);
+	squidward.scene.rotateY(90 * (Math.PI / 180));
+
+	setup.camera.lookAt(spongebob.scene.position);
+	const sq = new Quaternion().copy(setup.camera.quaternion);
+
+	setup.camera.lookAt(patrick.scene.position);
+	const pq = new Quaternion().copy(setup.camera.quaternion);
+
+	// setInterval(() => {
+	// 	camera.lookAt([spongebob.scene.position, patrick.scene.position, squidward.scene.position][++lookAtNum % 3]);
+	// }, 5000);
 
 	scene.add(spongebob.scene);
 	scene.add(patrick.scene);
 	scene.add(squidward.scene);
+	scene.add(bikinibottom.scene);
+
+	let t = 0;
 
 	const renderLoop = () => {
+		t = (t + 0.0005) % 1;
+
+		setup.camera.quaternion.slerpQuaternions(pq, sq, t);
 		setup.renderer.render(scene, setup.camera);
 		window.requestAnimationFrame(renderLoop);
 	};
