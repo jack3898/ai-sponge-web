@@ -1,0 +1,11 @@
+Model Information:
+* title:	Patrick Star
+* source:	https://sketchfab.com/3d-models/patrick-star-efd56cae2f3845ed805adc2bc12d7443
+* author:	Surya.W.A (https://sketchfab.com/wahyusuryaxmm)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Patrick Star" (https://sketchfab.com/3d-models/patrick-star-efd56cae2f3845ed805adc2bc12d7443) by Surya.W.A (https://sketchfab.com/wahyusuryaxmm) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

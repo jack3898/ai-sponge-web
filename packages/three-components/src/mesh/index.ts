@@ -1,1 +1,2 @@
-export * from './sphere';
+export * from './spongebob';
+export * from './patrick';

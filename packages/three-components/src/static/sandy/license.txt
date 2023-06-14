@@ -1,0 +1,11 @@
+Model Information:
+* title:	sandy - spongebob square pants
+* source:	https://sketchfab.com/3d-models/sandy-spongebob-square-pants-16dcf4dc041a42589da92eabba610e1b
+* author:	Mateus Sousa da Silva (https://sketchfab.com/Paraquedas)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "sandy - spongebob square pants" (https://sketchfab.com/3d-models/sandy-spongebob-square-pants-16dcf4dc041a42589da92eabba610e1b) by Mateus Sousa da Silva (https://sketchfab.com/Paraquedas) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
