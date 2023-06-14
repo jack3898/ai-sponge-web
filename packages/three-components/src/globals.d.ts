@@ -1,1 +1,1 @@
-declare module "*.gltf?url"
+declare module "*.glb?url"
