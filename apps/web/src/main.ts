@@ -1,11 +1,14 @@
-import { scene, mesh, setup, camera } from '@sponge/three-components';
-import { Color, Quaternion } from 'three';
+import { scene, mesh, setup } from '@sponge/three-components';
+import { AnimationFrameHandler } from './utils/AnimationFrameHandler';
+import { AI } from './utils/AI';
+import { Color } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 async function main() {
-	setup.camera.position.x = 0;
-	setup.camera.position.y = 3;
-	setup.camera.position.z = -8;
+	const animationFrameHandler = new AnimationFrameHandler<'main'>();
+	new OrbitControls(setup.camera, setup.container);
 
+	setup.camera.position.set(0, 3, -8);
 	setup.light.position.set(10, 10, 10);
 
 	scene.background = new Color('#DEFEFF');
@@ -18,44 +21,38 @@ async function main() {
 	const squidward = await mesh.squidwardGltf();
 	const bikinibottom = await mesh.bikinibottomGltf();
 
-	spongebob.scene.translateZ(-23);
-	spongebob.scene.translateX(-21);
+	spongebob.scene.position.set(-21, 0, -23);
 	spongebob.scene.rotateY(50 * (Math.PI / 180));
 
-	patrick.scene.translateZ(7);
-	patrick.scene.translateX(-18);
+	patrick.scene.position.set(-18, 0, 7);
 	patrick.scene.rotateY(130 * (Math.PI / 180));
 
-	squidward.scene.translateX(-20);
-	squidward.scene.translateZ(-7);
+	squidward.scene.position.set(-20, 0, -7);
 	squidward.scene.rotateY(90 * (Math.PI / 180));
 
-	setup.camera.lookAt(spongebob.scene.position);
-	const sq = new Quaternion().copy(setup.camera.quaternion);
-
 	setup.camera.lookAt(patrick.scene.position);
-	const pq = new Quaternion().copy(setup.camera.quaternion);
 
-	// setInterval(() => {
-	// 	camera.lookAt([spongebob.scene.position, patrick.scene.position, squidward.scene.position][++lookAtNum % 3]);
-	// }, 5000);
+	console.log(squidward.scene.position);
 
 	scene.add(spongebob.scene);
 	scene.add(patrick.scene);
 	scene.add(squidward.scene);
 	scene.add(bikinibottom.scene);
 
-	let t = 0;
+	const patrickAi = new AI(patrick.scene);
+	const spongebobAi = new AI(spongebob.scene);
+	const squidwardAi = new AI(squidward.scene);
 
-	const renderLoop = () => {
-		t = (t + 0.0005) % 1;
+	patrickAi.randomWalk();
+	spongebobAi.randomWalk();
+	squidwardAi.randomWalk();
 
-		setup.camera.quaternion.slerpQuaternions(pq, sq, t);
-		setup.renderer.render(scene, setup.camera);
-		window.requestAnimationFrame(renderLoop);
-	};
+	animationFrameHandler.register({
+		taskId: 'main',
+		task: () => setup.renderer.render(scene, setup.camera)
+	});
 
-	renderLoop();
+	animationFrameHandler.start();
 }
 
 main();
