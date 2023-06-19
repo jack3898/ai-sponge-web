@@ -6,8 +6,7 @@
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "types": ["node"],
         "allowJs": false,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
     }
 }

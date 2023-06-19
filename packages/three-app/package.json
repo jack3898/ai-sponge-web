@@ -1,0 +1,20 @@
+{
+    "name": "@sponge/three-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/index.ts",
+    "scripts": {
+        "lint": "eslint **/*.ts"
+    },
+    "author": "Jack Wright",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "@sponge/three-components": "*",
+        "gsap": "^3.12.1",
+        "three": "^0.153.0"
+    },
+    "devDependencies": {
+        "@types/three": "^0.152.1",
+        "vite": "^4.3.9"
+    }
+}

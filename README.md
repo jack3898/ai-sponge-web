@@ -13,8 +13,8 @@ Host your own AI Sponge on the web! Once online, a fully-3D environment will ren
 -   TypeScript for the backend and frontend
     -   Three, for the 3D rendering capabilities in HTML5
     -   Express, to handle the backend, communication to OpenAI and Uberduck
+    -   React for dynamic webpage rendering
     -   ~~Using tRPC for strongly-typed backend communication~~ (coming soon)
-    -   ~~React for dynamic webpage rendering~~ (coming soon)
     -   ~~Docker to compose the entire platform in an easy to use package~~ (coming soon)
     -   And more
 
