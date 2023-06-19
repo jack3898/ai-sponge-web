@@ -1,3 +1,6 @@
 {
-    "extends": "@sponge/config-ts/tsconfig.base.json"
+    "extends": "@sponge/config-ts/tsconfig.base.json",
+    "compilerOptions": {
+        "jsx": "react-jsx"
+    }
 }

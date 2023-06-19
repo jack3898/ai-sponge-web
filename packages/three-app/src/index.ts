@@ -1,17 +1,32 @@
-import { scene, actors, environment, camera, container, light, renderer, paths } from '@sponge/three-components';
+import { scene, actors, environment, light, paths } from '@sponge/three-components';
 import { AnimationFrameHandler } from './classes/AnimationFrameHandler';
 import { AI } from './classes/AI';
-import { Color, Vector3 } from 'three';
+import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { updateAspectRatio } from './functions/updateAspectRatio';
 
-async function main() {
+export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElement) {
+	const renderer = new THREE.WebGLRenderer({ canvas });
+	const camera = new THREE.PerspectiveCamera(35, container.offsetWidth / container.offsetHeight);
+
+	function onResize() {
+		updateAspectRatio(camera, container.offsetWidth, container.offsetHeight);
+		renderer.setSize(container.offsetWidth, container.offsetHeight);
+	}
+
+	window.addEventListener('resize', () => {
+		onResize();
+	});
+
+	onResize();
+
 	const animationFrameHandler = new AnimationFrameHandler<'main'>();
 	new OrbitControls(camera, container);
 
 	camera.position.set(0, 5, 0);
 	light.position.set(10, 10, 10);
 
-	scene.background = new Color('#DEFEFF');
+	scene.background = new THREE.Color('#DEFEFF');
 
 	scene.add(camera);
 	scene.add(light);
@@ -62,7 +77,7 @@ async function main() {
 
 	await cameraAi.talkTo(() => squidward.scene);
 
-	squidwardAi.walkTo(new Vector3(-10, 0, -20));
+	squidwardAi.walkTo(new THREE.Vector3(-10, 0, -20));
 
 	squidwardAi.talkTo(() => spongebob.scene);
 
@@ -78,5 +93,3 @@ async function main() {
 
 	await spongebobAi.talkTo(() => patrick.scene);
 }
-
-main();
