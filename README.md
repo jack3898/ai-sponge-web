@@ -62,3 +62,11 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Want to see what it looks like so far?
+
+I have a devlog on this Repo's Wiki (I know it's not the best place but it's easy 😂)
+
+https://github.com/jack3898/ai-sponge-web/wiki/Current-preview
+
+I will frequently edit that page to provide updates on development, it has screenshots and videos of this application working!
