@@ -1,4 +1,4 @@
-import { scene, actors, environment, light, paths } from '@sponge/three-components';
+import { scene, actors, environment, light } from '@sponge/three-components';
 import { AnimationFrameHandler } from './classes/AnimationFrameHandler';
 import { AI } from './classes/AI';
 import * as THREE from 'three';
@@ -53,12 +53,6 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	scene.add(patrick.scene);
 	scene.add(squidward.scene);
 	scene.add(bikinibottom.scene);
-
-	scene.add(paths.spongebobBoundary);
-	scene.add(paths.patrickBoundary);
-
-	paths.spongebobBoundary.position.set(-21, 0.01, -23);
-	paths.patrickBoundary.position.set(-14, 0.01, -23);
 
 	const patrickAi = new AI(patrick.scene);
 	const spongebobAi = new AI(spongebob.scene);
