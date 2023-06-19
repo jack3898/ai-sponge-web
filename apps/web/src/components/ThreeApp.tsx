@@ -5,7 +5,7 @@ type ThreeAppProps = {
 	children: ReactNode;
 };
 
-export default function ThreeApp({ children }: ThreeAppProps) {
+export function ThreeApp({ children }: ThreeAppProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const mountedRef = useRef<boolean>(false);

@@ -75,21 +75,15 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 
 	animationFrameHandler.start();
 
-	await cameraAi.talkTo(() => squidward.scene);
+	await patrickAi.talkTo(() => spongebob.scene);
 
-	squidwardAi.walkTo(new THREE.Vector3(-10, 0, -20));
+	await spongebobAi.talkTo(() => squidward.scene);
 
-	squidwardAi.talkTo(() => spongebob.scene);
-
-	squidwardAi.walk();
-
-	patrickAi.talkTo(() => spongebob.scene);
-
-	// await smoothRotate(camera, spongebob.scene.position, 1);
-
-	// eslint-disable-next-line no-constant-condition
+	await squidwardAi.talkTo(() => spongebob.scene);
 
 	await Promise.all([spongebobAi.randomTurn(), spongebobAi.walk()]);
 
 	await spongebobAi.talkTo(() => patrick.scene);
+
+	await cameraAi.smoothLookAt(() => spongebob.scene.position);
 }
