@@ -1,0 +1,15 @@
+{
+    "name": "@sponge/socketio",
+    "version": "1.0.0",
+    "description": "Socket.io",
+    "main": "src/index.ts",
+    "scripts": {
+        "lint": "eslint **/*.ts"
+    },
+    "author": "Jack Wright",
+    "license": "ISC",
+    "peerDependencies": {
+        "socket.io": "^4.6.2",
+        "socket.io-client": "^4.6.2"
+    }
+}

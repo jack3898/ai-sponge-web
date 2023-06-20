@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import { publicProcedure, router } from '../../trpc';
+import { io } from '@sponge/socketio/server';
+import type { Character } from '@sponge/socketio/types';
 
 export const uberduckRouter = router({
 	voice: publicProcedure
@@ -24,6 +26,8 @@ export const uberduckRouter = router({
 			});
 
 			const arrayBuffer = await response.arrayBuffer();
+
+			io.emit('activeCharacter', input.character.toLowerCase() as Character);
 
 			return Buffer.from(arrayBuffer).toString('base64');
 		})

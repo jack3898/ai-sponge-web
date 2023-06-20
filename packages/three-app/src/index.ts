@@ -4,8 +4,9 @@ import { AI } from './classes/AI';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { updateAspectRatio } from './functions/updateAspectRatio';
+import type { TypedSocket } from '@sponge/socketio/types';
 
-export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElement) {
+export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElement, socket: TypedSocket) {
 	const renderer = new THREE.WebGLRenderer({ canvas });
 	const camera = new THREE.PerspectiveCamera(35, container.offsetWidth / container.offsetHeight);
 
@@ -67,6 +68,23 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 		task: () => renderer.render(scene, camera)
 	});
 
+	socket.on('activeCharacter', (character) => {
+		switch (character) {
+			case 'spongebob': {
+				cameraAi.smoothLookAt(() => spongebob.scene.position);
+				break;
+			}
+			case 'patrick': {
+				cameraAi.smoothLookAt(() => patrick.scene.position);
+				break;
+			}
+			case 'squidward': {
+				cameraAi.smoothLookAt(() => squidward.scene.position);
+				break;
+			}
+		}
+	});
+
 	animationFrameHandler.start();
 
 	await patrickAi.talkTo(() => spongebob.scene);
@@ -78,6 +96,4 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	await Promise.all([spongebobAi.randomTurn(), spongebobAi.walk()]);
 
 	await spongebobAi.talkTo(() => patrick.scene);
-
-	await cameraAi.smoothLookAt(() => spongebob.scene.position);
 }

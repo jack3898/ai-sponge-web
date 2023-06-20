@@ -1,8 +1,6 @@
 import { publicProcedure, router } from '../../trpc';
 import { Configuration, OpenAIApi } from 'openai';
 import { range } from '@sponge/utils';
-import { z } from 'zod';
-import { observable } from '@trpc/server/observable';
 
 const openai = new OpenAIApi(
 	new Configuration({
