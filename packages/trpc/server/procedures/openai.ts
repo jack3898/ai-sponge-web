@@ -1,9 +1,8 @@
 import { publicProcedure, router } from '../../trpc';
 import { Configuration, OpenAIApi } from 'openai';
-
-function range(min: number, max: number): number {
-	return Math.random() * (max + 1 - min) + min;
-}
+import { range } from '@sponge/utils';
+import { z } from 'zod';
+import { observable } from '@trpc/server/observable';
 
 const openai = new OpenAIApi(
 	new Configuration({
@@ -13,7 +12,7 @@ const openai = new OpenAIApi(
 );
 
 export const openaiRouter = router({
-	topic: publicProcedure.query(async () => {
+	topic: publicProcedure.mutation(async () => {
 		const characters = ['spongebob', 'patrick', 'squidward'];
 		const topics = ['2006 honda civic', 'august 12 2036, the heat death of the universe', 'anything'];
 		const prompt = `${characters.join(', ')} have a long conversation and the topic is ${topics.at(

@@ -1,32 +1,49 @@
 import { trpcReact } from '@sponge/trpc';
+import { useEffect } from 'react';
 
 export function ThreeAppOverlay() {
-	const { refetch, data, isFetching } = trpcReact.openaiRouter.topic.useQuery(undefined, { enabled: false });
+	const {
+		mutate: fetchDialogue,
+		data: dialogueData,
+		isLoading: dialogueLoading
+	} = trpcReact.openaiRouter.topic.useMutation();
+
+	const { mutate: fetchVoice, data: voiceData } = trpcReact.uberduckRouter.voice.useMutation();
+
+	useEffect(() => {
+		if (voiceData) {
+			new Audio('data:audio/x-wav;base64,' + voiceData).play();
+		}
+	}, [voiceData]);
 
 	return (
 		<>
 			<div className="absolute top-0 left-0 p-2 bg-white">
 				<p>Spongebob AI development preview</p>
-				<button onClick={() => refetch()} className="border rounded bg-black text-white p-2">
+				<button onClick={() => fetchDialogue()} className="border rounded bg-black text-white p-2">
 					Click me to generate some AI text!
 				</button>
-				<p>{isFetching && 'Please wait...'}</p>
+				<p>{dialogueLoading && 'Please wait...'}</p>
 				<p>Tip: hold left click and drag to orbit the camera. Hold right click to pan, scroll to zoom.</p>
 			</div>
-			{data && (
+			{dialogueData && (
 				<div className="absolute left-0 bottom-0 bg-white rounded p-2">
-					{data?.map(({ character, text, id }) => {
-						const downloadURI = `${
-							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-							// @ts-ignore
-							import.meta.env.VITE_SERVER_ADDR
-						}/voice/${character.toLocaleLowerCase()}/${encodeURIComponent(text)}`;
-
+					{dialogueData?.map(({ character, text, id }) => {
 						return (
 							<li key={id}>
 								<span>
 									{character}: {text}
-									<a href={downloadURI}>🔊 (download)</a>
+									<button
+										type="button"
+										onClick={() => {
+											fetchVoice({
+												character: character.toLocaleLowerCase(),
+												speech: text
+											});
+										}}
+									>
+										🔊 (listen)
+									</button>
 								</span>
 							</li>
 						);
