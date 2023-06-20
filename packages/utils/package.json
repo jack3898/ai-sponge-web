@@ -1,0 +1,11 @@
+{
+    "name": "@sponge/utils",
+    "version": "1.0.0",
+    "description": "JS utilities",
+    "main": "./src/index.ts",
+    "scripts": {
+        "lint": "eslint **/*.ts"
+    },
+    "author": "Jack Wright",
+    "license": "ISC"
+}

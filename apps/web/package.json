@@ -10,12 +10,11 @@
     "license": "GPL-3.0",
     "dependencies": {
         "@sponge/three-app": "*",
-        "@sponge/trpc": "^1.0.0",
+        "@sponge/trpc": "*",
         "@tanstack/react-query": "^4.29.14",
         "@trpc/react-query": "^10.31.0"
     },
     "devDependencies": {
-        "@sponge/web": "^1.0.0",
         "@types/react": "^18.2.13",
         "@types/react-dom": "^18.2.6",
         "@vitejs/plugin-react": "^4.0.0",

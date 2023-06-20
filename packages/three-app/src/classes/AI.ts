@@ -1,6 +1,7 @@
 import type { Object3D, Vector3 } from 'three';
 import { AnimationFrameHandler } from './AnimationFrameHandler';
-import { range, proximityDetect, smoothRotateTo, smoothRotateToObj } from '../functions';
+import { proximityDetect, smoothRotateTo, smoothRotateToObj } from '../functions';
+import { range } from '@sponge/utils';
 
 export class AI {
 	animationFrameHandler = new AnimationFrameHandler<'walk' | 'turn' | 'stare'>();

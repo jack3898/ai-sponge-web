@@ -10,7 +10,8 @@
     "license": "GPL-3.0",
     "dependencies": {
         "@sponge/three-components": "*",
-        "@sponge/trpc": "^1.0.0",
+        "@sponge/trpc": "*",
+        "@sponge/utils": "*",
         "gsap": "^3.12.1",
         "three": "^0.153.0"
     },
