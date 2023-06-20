@@ -2,6 +2,12 @@
 
 NOTE: This project is still in its early stages of development and has not yet met its minimum feature threshold to qualify as ready to use; in other words, experimental.
 
+I have a devlog on this Repo's Wiki (I know it's not the best place but it's easy 😂)
+
+[See how it's going on the devlog!](https://github.com/jack3898/ai-sponge-web/wiki/Current-preview)
+
+I will frequently edit that page to provide updates on development, it has screenshots and videos of this application working!
+
 ## About
 
 Host your own AI Sponge on the web! Once online, a fully-3D environment will render in your web browser and the Spongebob crew will start talking.
@@ -62,11 +68,3 @@ npm install
 ```bash
 npm run dev
 ```
-
-## Want to see what it looks like so far?
-
-I have a devlog on this Repo's Wiki (I know it's not the best place but it's easy 😂)
-
-https://github.com/jack3898/ai-sponge-web/wiki/Current-preview
-
-I will frequently edit that page to provide updates on development, it has screenshots and videos of this application working!
