@@ -4,12 +4,12 @@ import type { Character } from '@sponge/socketio/types';
 
 type UseWebsocket = {
 	isConnected: boolean;
-	testEvents: Character[];
+	activeCharacter: Character;
 };
 
 export function useWebsocket(): UseWebsocket {
 	const [isConnected, setIsConnected] = useState(wsClient.connected);
-	const [testEvents, setTestEvents] = useState<Character[]>([]);
+	const [activeCharacter, setActiveCharacter] = useState<Character>('spongebob');
 
 	useEffect(() => {
 		function onConnect() {
@@ -21,7 +21,7 @@ export function useWebsocket(): UseWebsocket {
 		}
 
 		function onCharacterEvent(value: Character) {
-			setTestEvents((previous) => [...previous, value]);
+			setActiveCharacter(value);
 		}
 
 		wsClient.on('connect', onConnect);
@@ -35,5 +35,5 @@ export function useWebsocket(): UseWebsocket {
 		};
 	}, []);
 
-	return { isConnected, testEvents };
+	return { isConnected, activeCharacter };
 }

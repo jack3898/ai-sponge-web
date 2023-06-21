@@ -21,7 +21,7 @@ export const uberduckRouter = router({
 
 			const response = await fetch('https://api.uberduck.ai/speak-synchronous', {
 				method: 'POST',
-				body: JSON.stringify({ speech: input.speech, voice: input.character }),
+				body: JSON.stringify({ speech: input.speech, voice: input.character.trim().toLowerCase() }),
 				headers
 			});
 

@@ -1,6 +1,7 @@
 import { publicProcedure, router } from '../../trpc';
 import { Configuration, OpenAIApi } from 'openai';
-import { range } from '@sponge/utils';
+import { generateOpenAIPrompt } from '../utils';
+import { z } from 'zod';
 
 const openai = new OpenAIApi(
 	new Configuration({
@@ -9,13 +10,21 @@ const openai = new OpenAIApi(
 	})
 );
 
+const responseValidation = z.array(
+	z.object({
+		name: z.string(),
+		dialogue: z.string()
+	})
+);
+
 export const openaiRouter = router({
 	topic: publicProcedure.mutation(async () => {
-		const characters = ['spongebob', 'patrick', 'squidward'];
-		const topics = ['2006 honda civic', 'august 12 2036, the heat death of the universe', 'anything'];
-		const prompt = `${characters.join(', ')} have a long conversation and the topic is ${topics.at(
-			range(0, topics.length - 1)
-		)}. Each character's line starts with this format: "name: ".`;
+		const prompt = generateOpenAIPrompt({
+			characters: ['spongebob', 'patrick', 'squidward', 'squidward stimming'],
+			topics: ['football', 'coding', 'smoking weed', 'furry convention', '2006 honda civic', 'clapping butt cheeks']
+		});
+
+		console.log('PROMPT\n\n\n', prompt);
 
 		const chatCompletion = await openai.createCompletion({
 			model: 'text-davinci-002',
@@ -25,24 +34,35 @@ export const openaiRouter = router({
 
 		const text = chatCompletion.data.choices[0].text;
 
-		const find = /\n+/g;
+		if (text) {
+			try {
+				const find = /\n+/g;
 
-		const processed = text
-			?.replace(find, '\n')
-			.split('\n')
-			.filter(Boolean)
-			.reduce((acc, line, index) => {
-				const [name, text] = line.split(':');
+				const processed = text
+					?.replace(find, '\n')
+					.split('\n')
+					.filter(Boolean)
+					.reduce((acc, line) => {
+						const [name, text] = line.split(':');
 
-				acc.push({
-					id: index,
-					character: name?.trim().toLocaleUpperCase(),
-					text: text?.trim()
-				});
+						acc.push({
+							name: name?.trim(),
+							dialogue: text.trimStart()
+						});
 
-				return acc;
-			}, [] as { id: number; character: string; text: string }[]);
+						return acc;
+					}, [] as { name: string; dialogue: string }[]);
 
-		return processed;
+				const validated = responseValidation.parse(processed);
+
+				return validated;
+			} catch (error) {
+				console.error('Unexpected format from OpenAI.', error);
+
+				return null;
+			}
+		}
+
+		return null;
 	})
 });

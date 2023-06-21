@@ -7,7 +7,7 @@ export interface ServerToClientEvents {
 }
 
 export interface ClientToServerEvents {
-	setActiveCharacter: () => Character;
+	test: () => void;
 }
 
 export type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;

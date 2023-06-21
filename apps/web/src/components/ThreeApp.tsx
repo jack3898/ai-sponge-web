@@ -11,7 +11,7 @@ export function ThreeApp({ children }: ThreeAppProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const mountedRef = useRef<boolean>(false);
-	const { testEvents, isConnected } = useWebsocket();
+	const { activeCharacter, isConnected } = useWebsocket();
 
 	useEffect(() => {
 		if (canvasRef.current && containerRef.current && !mountedRef.current) {
@@ -21,7 +21,7 @@ export function ThreeApp({ children }: ThreeAppProps) {
 	}, [canvasRef.current, containerRef.current]);
 
 	if (isConnected) {
-		console.log(`React client got WS message! It says ${testEvents}`);
+		console.log(`React client got WS message! It says ${activeCharacter}`);
 	}
 
 	return (

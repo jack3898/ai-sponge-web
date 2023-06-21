@@ -1,6 +1,8 @@
 /**
- * Get a random number between a range. Resulting number includes min and max as a potential result.
+ * Get a random number between a range.
  */
-export function range(min: number, max: number): number {
-	return Math.random() * (max + 1 - min) + min;
+export function range(min: number, max: number, float = false): number {
+	const number = Math.random() * (++max - min) + min;
+
+	return float ? number : Math.floor(number);
 }

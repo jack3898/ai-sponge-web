@@ -26,19 +26,19 @@ export function ThreeAppOverlay() {
 				<p>{dialogueLoading && 'Please wait...'}</p>
 				<p>Tip: hold left click and drag to orbit the camera. Hold right click to pan, scroll to zoom.</p>
 			</div>
-			{dialogueData && (
+			{dialogueData?.length && (
 				<div className="absolute left-0 bottom-0 bg-white rounded p-2">
-					{dialogueData?.map(({ character, text, id }) => {
+					{dialogueData?.map(({ name, dialogue }) => {
 						return (
-							<li key={id}>
+							<li key={crypto.randomUUID()}>
 								<span>
-									{character}: {text}
+									{name}: {dialogue}
 									<button
 										type="button"
 										onClick={() => {
 											fetchVoice({
-												character: character.toLocaleLowerCase(),
-												speech: text
+												character: name,
+												speech: dialogue
 											});
 										}}
 									>
