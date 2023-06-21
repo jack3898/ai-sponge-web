@@ -14,9 +14,6 @@
         "apps/*",
         "packages/*"
     ],
-    "dependencies": {
-        "nx": "^16.3.2"
-    },
     "devDependencies": {
         "@sponge/config-ts": "*",
         "@sponge/eslint-config-sponge": "*",
@@ -25,6 +22,7 @@
         "eslint": "^8.42.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-prettier": "^4.2.1",
+        "nx": "^16.3.2",
         "prettier": "^2.8.8",
         "typescript": "^5.1.3"
     },
