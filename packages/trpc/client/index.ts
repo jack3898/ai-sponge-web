@@ -25,4 +25,4 @@ export const trpcReactClient = trpcReact.createClient(config);
 /**
  * Vanilla tRPC client for use in standard node applications.
  */
-export const client = createTRPCProxyClient<AppRouter>(config);
+export const trpcClient = createTRPCProxyClient<AppRouter>(config);

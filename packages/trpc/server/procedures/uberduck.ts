@@ -28,38 +28,8 @@ export const uberduckRouter = router({
 			const arrayBuffer = await response.arrayBuffer();
 
 			io.emit('activeCharacter', input.character.toLowerCase() as Character);
+			io.emit('currentSpeech', input.speech);
 
 			return Buffer.from(arrayBuffer).toString('base64');
-		}),
-	conversation: publicProcedure
-		.input(
-			z.array(
-				z.object({
-					character: z.string(),
-					speech: z.string()
-				})
-			)
-		)
-		.mutation(async ({ input }) => {
-			const headers = new Headers();
-
-			headers.append('Authorization', `Basic ${uberduckKey}`);
-			headers.append('content-type', 'audio/wav');
-
-			const responsesPromise = input.map((line) =>
-				fetch('https://api.uberduck.ai/speak-synchronous', {
-					method: 'POST',
-					body: JSON.stringify({ speech: line.speech, voice: line.character.trim().toLowerCase() }),
-					headers
-				})
-			);
-
-			const responses = await Promise.all(responsesPromise);
-
-			const arrayBuffers = responses.map((response) => response.arrayBuffer());
-
-			io.emit('activeCharacter', input[0].character.toLowerCase() as Character);
-
-			return arrayBuffers;
 		})
 });

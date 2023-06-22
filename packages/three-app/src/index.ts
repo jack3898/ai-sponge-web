@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { updateAspectRatio } from './functions/updateAspectRatio';
 import type { TypedSocket } from '@sponge/socketio/types';
+import { degreesToRadians } from '@sponge/utils';
 
 export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElement, socket: TypedSocket) {
 	const renderer = new THREE.WebGLRenderer({ canvas });
@@ -45,7 +46,7 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	camera.lookAt(spongebob.scene.position);
 
 	patrick.scene.position.set(-16, 0, -23);
-	patrick.scene.rotateY(130 * (Math.PI / 180));
+	patrick.scene.rotateY(degreesToRadians(270));
 
 	squidward.scene.position.set(-20, 0, -7);
 	squidward.scene.rotateY(90 * (Math.PI / 180));
@@ -74,14 +75,20 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 		switch (character) {
 			case 'spongebob': {
 				cameraAi.smoothLookAt(() => spongebob.scene.position);
+				patrickAi.smoothLookAt(() => spongebob.scene.position);
+				squidwardAi.smoothLookAt(() => spongebob.scene.position);
 				break;
 			}
 			case 'patrick': {
 				cameraAi.smoothLookAt(() => patrick.scene.position);
+				squidwardAi.smoothLookAt(() => patrick.scene.position);
+				spongebobAi.smoothLookAt(() => patrick.scene.position);
 				break;
 			}
 			case 'squidward': {
 				cameraAi.smoothLookAt(() => squidward.scene.position);
+				patrickAi.smoothLookAt(() => squidward.scene.position);
+				spongebobAi.smoothLookAt(() => squidward.scene.position);
 				break;
 			}
 		}
