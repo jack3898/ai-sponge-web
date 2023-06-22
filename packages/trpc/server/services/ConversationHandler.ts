@@ -9,7 +9,7 @@ export class ConversationHandler {
 		while (true) {
 			const topic = await this.openAi.generateConversation(
 				['spongebob', 'patrick', 'squidward'],
-				['2006 honda civic', 'cars', 'squidward being moody']
+				['2006 honda civic', 'cars', 'squidward being moody', 'august 12th 2036, the heat death of the universe']
 			);
 
 			if (!topic) {
