@@ -1,4 +1,4 @@
-import { range } from '@sponge/utils';
+import { pickFrom } from '@sponge/utils';
 
 type GenerateOpenAIPromptProps = {
 	/**
@@ -9,15 +9,16 @@ type GenerateOpenAIPromptProps = {
 	/**
 	 * A starting point for the conversation
 	 */
-	topic: string;
+	topics: string[];
 };
 
 /**
  * This prompt will give the clearest possible instructions to OpenAI for what we expect as an output.
  * The output will be validated before being returned.
  */
-export function generateOpenAIPrompt({ characters, topic }: GenerateOpenAIPromptProps): string {
+export function generateOpenAIPrompt({ characters, topics }: GenerateOpenAIPromptProps): string {
 	const charactersString = characters.join(', ').replace(/, ((?:.(?!, ))+)$/, ' and $1');
+	const topic = pickFrom(topics);
 
 	const prompt = `
 Create a conversation between ${charactersString} focusing on ${topic}.

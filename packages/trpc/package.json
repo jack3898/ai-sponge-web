@@ -9,8 +9,8 @@
     "author": "Jack Wright",
     "license": "ISC",
     "dependencies": {
-        "@sponge/socketio": "^1.0.0",
-        "@sponge/utils": "^1.0.0",
+        "@sponge/socketio": "*",
+        "@sponge/utils": "*",
         "@trpc/client": "^10.31.0",
         "@trpc/server": "^10.31.0",
         "zod": "^3.21.4"

@@ -9,7 +9,7 @@
     "author": "Jack Wright",
     "license": "GPL-3.0",
     "dependencies": {
-        "@sponge/socketio": "^1.0.0",
+        "@sponge/socketio": "*",
         "@sponge/three-components": "*",
         "@sponge/trpc": "*",
         "@sponge/utils": "*",

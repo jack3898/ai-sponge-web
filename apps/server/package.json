@@ -9,9 +9,9 @@
     "author": "Jack Wright",
     "license": "GPL-3.0",
     "dependencies": {
-        "@sponge/socketio": "^1.0.0",
+        "@sponge/socketio": "*",
         "@sponge/trpc": "*",
-        "@sponge/utils": "^1.0.0",
+        "@sponge/utils": "*",
         "cors": "^2.8.5",
         "express": "^4.18.2",
         "openai": "^3.3.0",

@@ -18,7 +18,7 @@ export function ThreeAppOverlay() {
 
 	return (
 		<>
-			<div className="absolute top-0 left-0 p-2 bg-white">
+			<div className="absolute top-0 left-0 p-2 bg-white rounded">
 				<p>Spongebob AI development preview</p>
 				<button onClick={() => fetchDialogue()} className="border rounded bg-black text-white p-2">
 					Click me to generate some AI text!

@@ -21,6 +21,8 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 
 	onResize();
 
+	renderer.setPixelRatio(window.devicePixelRatio);
+
 	const animationFrameHandler = new AnimationFrameHandler<'main'>();
 	new OrbitControls(camera, container);
 
@@ -86,14 +88,4 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	});
 
 	animationFrameHandler.start();
-
-	await patrickAi.talkTo(() => spongebob.scene);
-
-	await spongebobAi.talkTo(() => squidward.scene);
-
-	await squidwardAi.talkTo(() => spongebob.scene);
-
-	await Promise.all([spongebobAi.randomTurn(), spongebobAi.walk()]);
-
-	await spongebobAi.talkTo(() => patrick.scene);
 }

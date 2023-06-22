@@ -19,17 +19,9 @@ const responseValidation = z.array(
 
 export const openaiRouter = router({
 	topic: publicProcedure.mutation(async () => {
-		const topicResponse = await openai.createCompletion({
-			model: 'text-davinci-002',
-			prompt: 'Suggest a funny, random and inappropriate topic idea for a conversation between adults',
-			max_tokens: 1000
-		});
-
-		const topic = topicResponse.data.choices[0].text!;
-
 		const prompt = generateOpenAIPrompt({
 			characters: ['spongebob', 'patrick', 'squidward'],
-			topic
+			topics: ['2006 honda civic', 'cars', 'squidward being moody']
 		});
 
 		console.log('PROMPT\n\n\n', prompt);
