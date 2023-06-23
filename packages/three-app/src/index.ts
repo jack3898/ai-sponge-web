@@ -51,8 +51,6 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	squidward.scene.position.set(-20, 0, -7);
 	squidward.scene.rotateY(90 * (Math.PI / 180));
 
-	console.log(squidward.scene.position);
-
 	scene.add(spongebob.scene);
 	scene.add(patrick.scene);
 	scene.add(squidward.scene);

@@ -13,7 +13,9 @@ export class ConversationHandler {
 			);
 
 			if (!topic) {
-				await sleep(15_000);
+				console.error('Please wait 5 seconds, will retry the next conversation...');
+
+				await sleep(5000);
 
 				continue;
 			}
