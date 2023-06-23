@@ -1,6 +1,6 @@
 import { create3dApp } from '@sponge/three-app';
 import { useRef, useEffect, type ReactNode } from 'react';
-import { useWebsocket } from '../hooks/useWebsocket';
+import { useWebsocket } from '../hooks/useWebsocket.js';
 import { wsClient } from '@sponge/socketio/client';
 
 type ThreeAppProps = {

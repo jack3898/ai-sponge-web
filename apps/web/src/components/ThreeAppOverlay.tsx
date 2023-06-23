@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ClientConversationHandler } from '../services';
-import { useWebsocket } from '../hooks/useWebsocket';
+import { ClientConversationHandler } from '../services/index.js';
+import { useWebsocket } from '../hooks/useWebsocket.js';
 
 export function ThreeAppOverlay() {
 	const { caption } = useWebsocket();

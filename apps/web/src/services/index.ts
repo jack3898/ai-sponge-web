@@ -1,1 +1,1 @@
-export * from './ClientConversationHandler';
+export * from './ClientConversationHandler.js';

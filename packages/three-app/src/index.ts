@@ -1,10 +1,10 @@
 import { scene, actors, environment, light } from '@sponge/three-components';
-import { AnimationFrameHandler } from './classes/AnimationFrameHandler';
-import { AI } from './classes/AI';
+import { AnimationFrameHandler } from './classes/AnimationFrameHandler.js';
+import { AI } from './classes/AI.js';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { updateAspectRatio } from './functions/updateAspectRatio';
-import type { TypedSocket } from '@sponge/socketio/types';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { updateAspectRatio } from './functions/updateAspectRatio.js';
+import type { TypedSocket } from '@sponge/socketio/types.js';
 import { degreesToRadians } from '@sponge/utils';
 
 export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElement, socket: TypedSocket) {

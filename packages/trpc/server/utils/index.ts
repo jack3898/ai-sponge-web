@@ -1,1 +1,1 @@
-export * from './generateOpenAIPrompt';
+export * from './generateOpenAIPrompt.js';

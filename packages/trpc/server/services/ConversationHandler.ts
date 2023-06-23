@@ -1,6 +1,6 @@
 import { sleep } from '@sponge/utils';
-import type { DialogueResponse } from '../validation';
-import { OpenAIHandler } from './OpenAIHandler';
+import type { DialogueResponse } from '../validation/index.js';
+import { OpenAIHandler } from './OpenAIHandler.js';
 
 export class ConversationHandler {
 	private static openAi = new OpenAIHandler();

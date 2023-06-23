@@ -1,3 +1,3 @@
-export * from './proximityDetect';
-export * from './smoothRotate';
-export * from './smoothRotateToObj';
+export * from './proximityDetect.js';
+export * from './smoothRotate.js';
+export * from './smoothRotateToObj.js';

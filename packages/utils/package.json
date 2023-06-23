@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "JS utilities",
     "main": "./src/index.ts",
+    "type": "module",
     "scripts": {
         "lint": "eslint **/*.ts"
     },

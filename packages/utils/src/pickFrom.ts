@@ -1,4 +1,4 @@
-import { range } from './range';
+import { range } from './range.js';
 
 /**
  * Pick a random item from an array.

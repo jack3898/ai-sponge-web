@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ThreeApp, ThreeAppOverlay } from './components';
+import { ThreeApp, ThreeAppOverlay } from './components/index.js';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { trpcReactClient, trpcReact } from '@sponge/trpc';
 

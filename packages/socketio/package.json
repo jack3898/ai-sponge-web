@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Socket.io",
     "main": "src/index.ts",
+    "type": "module",
     "scripts": {
         "lint": "eslint **/*.ts"
     },
@@ -11,5 +12,8 @@
     "peerDependencies": {
         "socket.io": "^4.6.2",
         "socket.io-client": "^4.6.2"
+    },
+    "dependencies": {
+        "@sponge/env": "^1.0.0"
     }
 }

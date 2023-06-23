@@ -1,2 +1,2 @@
-export * from './scene';
-export * from './light';
+export * from './scene.js';
+export * from './light.js';

@@ -1,4 +1,4 @@
-import { range } from './range';
+import { range } from './range.js';
 
 /**
  * Flip a coin that sometimes is very unevenly weighted on one side!

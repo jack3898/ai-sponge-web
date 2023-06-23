@@ -2,8 +2,9 @@
     "name": "@sponge/server",
     "version": "1.0.0",
     "description": "",
+    "type": "module",
     "scripts": {
-        "dev": "nodemon ./src/index.ts",
+        "dev": "nodemon --exec ts-node-esm ./src/index.ts",
         "lint": "eslint **/*.ts"
     },
     "author": "Jack Wright",

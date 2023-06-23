@@ -1,3 +1,3 @@
-export * from './patrick';
-export * from './spongebob';
-export * from './squidward';
+export * from './patrick.js';
+export * from './spongebob.js';
+export * from './squidward.js';

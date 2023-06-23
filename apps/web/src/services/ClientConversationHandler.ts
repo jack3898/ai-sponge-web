@@ -1,6 +1,6 @@
 import { trpcClient } from '@sponge/trpc';
 import { wsClient } from '@sponge/socketio/client';
-import type { Character } from '@sponge/socketio/types';
+import type { Character } from '@sponge/socketio/types.js';
 
 export class ClientConversationHandler {
 	abortController = new AbortController();

@@ -1,1 +1,1 @@
-export * from './dialogueResponse';
+export * from './dialogueResponse.js';

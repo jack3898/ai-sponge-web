@@ -1,2 +1,2 @@
-export * from './OpenAIHandler';
-export * from './ConversationHandler';
+export * from './OpenAIHandler.js';
+export * from './ConversationHandler.js';

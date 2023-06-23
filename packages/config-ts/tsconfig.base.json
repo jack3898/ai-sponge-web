@@ -1,12 +1,10 @@
 {
     "compilerOptions": {
-        "target": "esnext",
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "NodeNext",
         "strict": true,
-        "module": "commonjs",
         "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "allowJs": false,
-        "resolveJsonModule": true,
+        "allowJs": false
     }
 }

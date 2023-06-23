@@ -1,13 +1,12 @@
 import { createTRPCProxyClient, httpBatchLink, type CreateTRPCClientOptions } from '@trpc/client';
-import type { AppRouter } from '../server';
+import type { AppRouter } from '../server/index.js';
 import { createTRPCReact } from '@trpc/react-query';
+import env from '@sponge/env/vite.js';
 
 const config: CreateTRPCClientOptions<AppRouter> = {
 	links: [
 		httpBatchLink({
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			url: new URL(import.meta.env.VITE_SERVER_ADDR + '/trpc').toString()
+			url: env.VITE_SERVER_ADDR + '/trpc'
 		})
 	]
 };

@@ -2,6 +2,7 @@
     "name": "@sponge/web",
     "version": "1.0.0",
     "description": "The web app!",
+    "type": "module",
     "scripts": {
         "dev": "vite serve ./src",
         "lint": "eslint **/*.{ts,tsx}"
@@ -13,6 +14,7 @@
         "@fortawesome/free-regular-svg-icons": "^6.4.0",
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
+        "@sponge/env": "^1.0.0",
         "@sponge/react-components": "*",
         "@sponge/socketio": "*",
         "@sponge/three-app": "*",
@@ -27,7 +29,6 @@
     "devDependencies": {
         "@types/react": "^18.2.13",
         "@types/react-dom": "^18.2.6",
-        "@vitejs/plugin-react": "^4.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "vite": "^4.3.9"

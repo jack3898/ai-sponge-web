@@ -1,2 +1,2 @@
-export * from './ThreeApp';
-export * from './ThreeAppOverlay';
+export * from './ThreeApp.js';
+export * from './ThreeAppOverlay.js';

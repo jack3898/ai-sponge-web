@@ -1,1 +1,1 @@
-export * from './createBoundary';
+export * from './createBoundary.js';

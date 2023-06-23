@@ -1,2 +1,2 @@
-export * from './conversation';
-export * from './uberduck';
+export * from './conversation.js';
+export * from './uberduck.js';

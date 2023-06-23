@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { wsClient } from '@sponge/socketio/client';
-import type { Character } from '@sponge/socketio/types';
+import type { Character } from '@sponge/socketio/types.js';
 
 type UseWebsocket = {
 	isConnected: boolean;

@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
-import { generateOpenAIPrompt } from '../utils';
-import { type DialogueResponseArray, dialogueResponseArray } from '../validation';
+import { generateOpenAIPrompt } from '../utils/index.js';
+import { type DialogueResponseArray, dialogueResponseArray } from '../validation/index.js';
 
 export class OpenAIHandler {
 	static readonly api = new OpenAIApi(

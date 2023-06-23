@@ -1,5 +1,5 @@
-import { router } from '../trpc';
-import * as procedures from './procedures';
+import { router } from '../trpc.js';
+import * as procedures from './procedures/index.js';
 
 export const appRouter = router({ ...procedures });
 

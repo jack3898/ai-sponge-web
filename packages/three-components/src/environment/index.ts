@@ -1,1 +1,1 @@
-export * from './bikinibottom';
+export * from './bikinibottom.js';

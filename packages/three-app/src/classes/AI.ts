@@ -1,6 +1,6 @@
 import type { Object3D, Vector3 } from 'three';
-import { AnimationFrameHandler } from './AnimationFrameHandler';
-import { proximityDetect, smoothRotateTo, smoothRotateToObj } from '../functions';
+import { AnimationFrameHandler } from './AnimationFrameHandler.js';
+import { proximityDetect, smoothRotateTo, smoothRotateToObj } from '../functions/index.js';
 import { range } from '@sponge/utils';
 
 export class AI {

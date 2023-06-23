@@ -1,5 +1,5 @@
-import { publicProcedure, router } from '../../trpc';
-import { ConversationHandler } from '../services';
+import { publicProcedure, router } from '../../trpc.js';
+import { ConversationHandler } from '../services/index.js';
 
 export const conversationRouter = router({
 	getLine: publicProcedure.mutation(async () => {

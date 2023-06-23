@@ -1,9 +1,10 @@
 import { z } from 'zod';
-import { publicProcedure, router } from '../../trpc';
-import { io } from '@sponge/socketio/server';
-import type { Character } from '@sponge/socketio/types';
+import { publicProcedure, router } from '../../trpc.js';
+import { io } from '@sponge/socketio/server/index.js';
+import type { Character } from '@sponge/socketio/types.js';
+import env from '@sponge/env/node.js';
 
-const uberduckKey = Buffer.from(`${process.env.UBERDUCK_KEY}:${process.env.UBERDUCK_SECRET}`).toString('base64');
+const uberduckKey = Buffer.from(`${env.UBERDUCK_KEY}:${env.UBERDUCK_SECRET}`).toString('base64');
 
 export const uberduckRouter = router({
 	voice: publicProcedure
