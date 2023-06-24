@@ -85,7 +85,7 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	animationFrameHandler.start();
 
 	socket.on('activeCharacter', (character) => {
-		squidwardTalk.fadeOut(0.5);
+		squidwardTalk.fadeOut(0.2);
 
 		switch (character) {
 			case 'spongebob': {
@@ -105,8 +105,7 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 				patrickAi.smoothLookAt(() => squidward.scene.position);
 				spongebobAi.smoothLookAt(() => squidward.scene.position);
 
-				squidwardTalk.play();
-				squidwardTalk.fadeIn(0.6);
+				squidwardTalk.reset().play().fadeIn(0.5);
 
 				break;
 			}
