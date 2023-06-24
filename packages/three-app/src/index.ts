@@ -7,6 +7,9 @@ import { updateAspectRatio } from './functions/updateAspectRatio.js';
 import type { TypedSocket } from '@sponge/socketio/types.js';
 import { degreesToRadians } from '@sponge/utils';
 
+// I know, I know, this file is a mess!
+// When the fundamentals are added, I will clean up :)
+
 export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElement, socket: TypedSocket) {
 	const renderer = new THREE.WebGLRenderer({ canvas });
 	const camera = new THREE.PerspectiveCamera(35, container.offsetWidth / container.offsetHeight);
@@ -27,7 +30,7 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	const animationFrameHandler = new AnimationFrameHandler<'main'>();
 	new OrbitControls(camera, container);
 
-	camera.position.set(0, 5, 0);
+	camera.position.set(-17, 5, -38);
 	light.position.set(10, 10, 10);
 
 	scene.background = new THREE.Color('#DEFEFF');
@@ -43,13 +46,18 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	spongebob.scene.position.set(-21, 0, -23);
 	spongebob.scene.rotateY(50 * (Math.PI / 180));
 
-	camera.lookAt(spongebob.scene.position);
-
 	patrick.scene.position.set(-16, 0, -23);
 	patrick.scene.rotateY(degreesToRadians(270));
 
 	squidward.scene.position.set(-20, 0, -7);
 	squidward.scene.rotateY(90 * (Math.PI / 180));
+
+	camera.lookAt(squidward.scene.position);
+
+	const mixer = new THREE.AnimationMixer(squidward.scene);
+	const animations = squidward.animations;
+	const clip = THREE.AnimationClip.findByName(animations, 'talk');
+	const squidwardTalk = mixer.clipAction(clip);
 
 	scene.add(spongebob.scene);
 	scene.add(patrick.scene);
@@ -64,12 +72,21 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	// walk random vectors spongebob - new Vector3(-21, 0.01, -23), new Vector3(-16, 0.01, -23)
 	// walk random vectors patrick - new Vector3(-15, 0.01, -23), new Vector3(-10, 0.01, -23)
 
+	const clock = new THREE.Clock();
+
 	animationFrameHandler.register({
 		taskId: 'main',
-		task: () => renderer.render(scene, camera)
+		task: () => {
+			renderer.render(scene, camera);
+			mixer.update(clock.getDelta());
+		}
 	});
 
+	animationFrameHandler.start();
+
 	socket.on('activeCharacter', (character) => {
+		squidwardTalk.fadeOut(0.5);
+
 		switch (character) {
 			case 'spongebob': {
 				cameraAi.smoothLookAt(() => spongebob.scene.position);
@@ -87,10 +104,12 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 				cameraAi.smoothLookAt(() => squidward.scene.position);
 				patrickAi.smoothLookAt(() => squidward.scene.position);
 				spongebobAi.smoothLookAt(() => squidward.scene.position);
+
+				squidwardTalk.play();
+				squidwardTalk.fadeIn(0.6);
+
 				break;
 			}
 		}
 	});
-
-	animationFrameHandler.start();
 }
