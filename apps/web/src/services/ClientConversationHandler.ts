@@ -86,7 +86,7 @@ export class ClientConversationHandler {
 							// Audio failed, so calculate using the length of the sentence how long it would take for the character to say it
 							console.error('Unable to read audio. Running this dialogue without audio...');
 
-							const dialogueTimeMs = Math.max(line.dialogue.length * 75, 3000);
+							const dialogueTimeMs = Math.max(line.dialogue.length * 80, 3000);
 
 							console.error(`Next dialogue will resume in ${dialogueTimeMs / 1000}s`);
 

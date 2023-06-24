@@ -1,4 +1,4 @@
-import { create3dApp } from '@sponge/three-app';
+import { create3dApp } from '@sponge/three';
 import { useRef, useEffect, type ReactNode } from 'react';
 import { wsClient } from '@sponge/socketio/client';
 

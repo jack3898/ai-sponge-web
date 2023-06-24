@@ -17,7 +17,7 @@
         "@sponge/env": "^1.0.0",
         "@sponge/react-components": "*",
         "@sponge/socketio": "*",
-        "@sponge/three-app": "*",
+        "@sponge/three": "*",
         "@sponge/trpc": "*",
         "@tanstack/react-query": "^4.29.14",
         "@trpc/react-query": "^10.31.0",
