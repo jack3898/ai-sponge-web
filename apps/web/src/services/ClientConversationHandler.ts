@@ -66,19 +66,34 @@ export class ClientConversationHandler {
 					this.wsClient.emit('activeCharacter', line.name.toLowerCase() as Character);
 					this.wsClient.emit('currentSpeech', line.dialogue);
 
-					audio.play();
+					audio
+						.play()
+						.then(() => {
+							// Audio received! On it finishing, wait for a short time and move on.
+							audio.onended = async () => {
+								await sleep(1500);
 
-					audio.onended = async () => {
-						await sleep(1500);
+								if (!this.abortController.signal.aborted) {
+									res(true);
 
-						if (!this.abortController.signal.aborted) {
+									return;
+								}
+
+								res(false);
+							};
+						})
+						.catch(async () => {
+							// Audio failed, so calculate using the length of the sentence how long it would take for the character to say it
+							console.error('Unable to read audio. Running this dialogue without audio...');
+
+							const dialogueTimeMs = Math.max(line.dialogue.length * 75, 3000);
+
+							console.error(`Next dialogue will resume in ${dialogueTimeMs / 1000}s`);
+
+							await sleep(dialogueTimeMs);
+
 							res(true);
-
-							return;
-						}
-
-						res(false);
-					};
+						});
 				}
 			});
 

@@ -38,7 +38,7 @@ export class AI {
 	 *
 	 * @param subjectToLookAt a function to get the latest subject information, it is a function to ensure a moving subject does not cause any animation issues
 	 */
-	smoothLookAt(subjectToLookAt: () => Vector3, duration = 1) {
+	smoothLookAt(subjectToLookAt: () => Vector3, duration = 0.5) {
 		if (this.subjectIsCloseToObject(subjectToLookAt)) {
 			this.animationFrameHandler.unregister('walk'); // subject will spin if they reach their subjectToLookAt!
 		}
