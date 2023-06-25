@@ -1,4 +1,4 @@
-import { scene, actors, environment, light } from '@sponge/three-components';
+import { scene, light, squidwardGltf, spongebobGltf, patrickGltf, bikinibottomGltf } from '@sponge/three-components';
 import { AnimationFrameHandler } from './classes/AnimationFrameHandler.js';
 import { AI } from './classes/AI.js';
 import * as THREE from 'three';
@@ -38,10 +38,10 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	scene.add(camera);
 	scene.add(light);
 
-	const spongebob = await actors.spongebobGltf();
-	const patrick = await actors.patrickGltf();
-	const squidward = await actors.squidwardGltf();
-	const bikinibottom = await environment.bikinibottomGltf();
+	const { spongebob, spongebobMixer, spongebobTalkAnimation } = await spongebobGltf;
+	const { patrick, patrickMixer, patrickTalkAnimation } = await patrickGltf;
+	const { squidward, squidwardMixer, squidwardTalkAnimation } = await squidwardGltf;
+	const bikinibottom = await bikinibottomGltf();
 
 	spongebob.scene.position.set(-21, 0, -23);
 	spongebob.scene.rotateY(50 * (Math.PI / 180));
@@ -53,11 +53,6 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	squidward.scene.rotateY(90 * (Math.PI / 180));
 
 	camera.lookAt(squidward.scene.position);
-
-	const mixer = new THREE.AnimationMixer(squidward.scene);
-	const animations = squidward.animations;
-	const clip = THREE.AnimationClip.findByName(animations, 'talk');
-	const squidwardTalk = mixer.clipAction(clip);
 
 	scene.add(spongebob.scene);
 	scene.add(patrick.scene);
@@ -73,31 +68,43 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 	// walk random vectors patrick - new Vector3(-15, 0.01, -23), new Vector3(-10, 0.01, -23)
 
 	const clock = new THREE.Clock();
+	const clock2 = new THREE.Clock();
+	const clock3 = new THREE.Clock();
 
 	animationFrameHandler.register({
 		taskId: 'main',
 		task: () => {
 			renderer.render(scene, camera);
-			mixer.update(clock.getDelta());
+			spongebobMixer.update(clock.getDelta());
+			squidwardMixer.update(clock2.getDelta());
+			patrickMixer.update(clock3.getDelta());
 		}
 	});
 
 	animationFrameHandler.start();
 
 	socket.on('activeCharacter', (character) => {
-		squidwardTalk.fadeOut(0.2);
+		squidwardTalkAnimation.fadeOut(0.2);
+		spongebobTalkAnimation.fadeOut(0.2);
+		patrickTalkAnimation.fadeOut(0.2);
 
 		switch (character) {
 			case 'spongebob': {
 				cameraAi.smoothLookAt(() => spongebob.scene.position);
 				patrickAi.smoothLookAt(() => spongebob.scene.position);
 				squidwardAi.smoothLookAt(() => spongebob.scene.position);
+
+				spongebobTalkAnimation.reset().play().fadeIn(0.5);
+
 				break;
 			}
 			case 'patrick': {
 				cameraAi.smoothLookAt(() => patrick.scene.position);
 				squidwardAi.smoothLookAt(() => patrick.scene.position);
 				spongebobAi.smoothLookAt(() => patrick.scene.position);
+
+				patrickTalkAnimation.reset().play().fadeIn(0.5);
+
 				break;
 			}
 			case 'squidward': {
@@ -105,7 +112,7 @@ export async function create3dApp(canvas: HTMLCanvasElement, container: HTMLElem
 				patrickAi.smoothLookAt(() => squidward.scene.position);
 				spongebobAi.smoothLookAt(() => squidward.scene.position);
 
-				squidwardTalk.reset().play().fadeIn(0.5);
+				squidwardTalkAnimation.reset().play().fadeIn(0.5);
 
 				break;
 			}
