@@ -5,3 +5,4 @@ export * from './degreesToRadians.js';
 export * from './difference.js';
 export * from './classList.js';
 export * from './pickFrom.js';
+export * from './asyncQueue.js';

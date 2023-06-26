@@ -1,7 +1,7 @@
 import { trpcClient } from '@sponge/trpc';
 import { wsClient } from '@sponge/socketio/client';
 import type { Character } from '@sponge/socketio/types.js';
-import { sleep } from '@sponge/utils';
+import { createAsyncQueue, sleep } from '@sponge/utils';
 
 export class ClientConversationHandler {
 	abortController = new AbortController();
@@ -19,40 +19,23 @@ export class ClientConversationHandler {
 		return new Audio('data:audio/x-wav;base64,' + voiceData);
 	}
 
-	/**
-	 * Keeps a queue of promises that resolve to dialogue and audio.
-	 */
-	*getNextAction() {
-		const resolveLineAndAudio = async () => {
-			try {
-				const line = await this.getNextLine();
-				const audio = await this.getNextAudio(line.name, line.dialogue);
+	async resolveLineAndAudio() {
+		try {
+			const line = await this.getNextLine();
+			const audio = await this.getNextAudio(line.name, line.dialogue);
 
-				console.info('New dialogue has arrived!');
+			console.info('New dialogue has arrived!');
 
-				return [line, audio] as const;
-			} catch (error: unknown) {
-				console.error('There was a problem fetching the next dialogue.', error);
+			return [line, audio] as const;
+		} catch (error: unknown) {
+			console.error('There was a problem fetching the next dialogue.', error);
 
-				return null;
-			}
-		};
-
-		const queue: ReturnType<typeof resolveLineAndAudio>[] = [];
-
-		while (true) {
-			// Always keep the next part of the conversation in memory for quick access!
-			if (queue.length < 3) {
-				queue.push(resolveLineAndAudio(), resolveLineAndAudio());
-				console.info(`Buffering two more character dialogues. ${queue.length} items are now active promises.`);
-			}
-
-			yield queue.shift();
+			return null;
 		}
 	}
 
 	async startLoop() {
-		const actionGenerator = this.getNextAction();
+		const actionGenerator = createAsyncQueue(() => this.resolveLineAndAudio(), 3);
 
 		// eslint-disable-next-line no-constant-condition
 		while (true) {
